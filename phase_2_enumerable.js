@@ -21,4 +21,24 @@ Array.prototype.myMap = function(cb) {
 
 // console.log([2,3,4].myMap(callback));
 
+Array.prototype.myReduce = function(callback, acc = null) {
+    if (acc === null) {
+        acc = this[0];
+        this.shift();
+    }
+
+    this.myEach(function(ele) {
+        acc = callback(acc, ele);
+    })
+
+    return acc;
+}
+
+// console.log([1, 2, 3].myReduce(function (acc, el) {
+//     return acc + el;
+// }));
+
+// console.log([1, 2, 3].myReduce(function (acc, el) {
+//     return acc + el;
+// }, 25));
 
