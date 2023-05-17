@@ -107,4 +107,36 @@ function bsearch(arr, target) {
     }
 }
 
-console.log(bsearch([1,3,5,7,10,11,15], 11));
+// console.log(bsearch([1,3,5,7,10,11,15], 11));
+
+function mergeSort(array) {
+
+    if (array.length < 2) {
+        return array;
+    }
+
+    let mid = Math.floor(array.length / 2);
+
+    let sortedLeft = mergeSort(array.slice(0, mid));
+    let sortedRight = mergeSort(array.slice(mid, array.length));
+
+    let merged = merge(sortedLeft, sortedRight);
+
+    return merged;
+}
+
+function merge(left, right) {
+    let merged = [];
+
+    while (left.length > 0 || right.length > 0) {
+        if (left[0] < right[0]) {
+            merged.push(left.shift);
+        } else {
+            merged.push(right.shift);
+        }
+    }
+    merged.concat(left).concat(right);
+    return merged;
+}
+
+console.log(mergeSort([4,2,6,3,7,1]));
