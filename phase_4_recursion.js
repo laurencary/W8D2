@@ -77,5 +77,34 @@ function deepDup(arr) {
 array = [0,[1,3],[2,[3]]];
 duped = deepDup(array);
 duped[1].push(4);
-console.log(array);
-console.log(duped);
+// console.log(array);
+// console.log(duped);
+
+function bsearch(arr, target) {
+    
+    if (arr.length === 0 && arr[0] !== target) {
+        return -1;
+    }
+
+    let mid = Math.floor(arr.length / 2);
+    
+    if (arr[mid] === target) {
+        return mid;
+    }
+
+    let right = arr.slice(mid + 1, arr.length);
+    let left = arr.slice(0, mid);
+
+    if (target < arr[mid]) {
+        return bsearch(left, target);
+    } else {
+        result = bsearch(right, target);
+        if (result === -1) {
+            return -1
+        } else {
+            return mid + 1 + result;
+        }
+    }
+}
+
+console.log(bsearch([1,3,5,7,10,11,15], 11));
