@@ -28,4 +28,54 @@ function exponent(base, exp) {
     }
 }
 
-console.log(exponent(2, -2));
+// console.log(exponent(2, -2));
+
+function exponent2(base, exp) {
+    if (exp === 1) {
+        return base;
+    }
+    if (exp % 2 === 0) {
+        return exponent2(base, exp / 2) ** 2;
+    } else {
+        return base * (exponent2(base, (exp-1)/ 2) ** 2);
+    }
+}
+
+// console.log(exponent2(2, 13));
+
+function fibonacci(n) {
+    if (n === 1) {
+        return [1];
+    }
+    if (n === 2) {
+        return [1, 1];
+    }
+
+    let prev_fib = fibonacci(n-1);
+    prev_fib.push(prev_fib[prev_fib.length - 1] + prev_fib[prev_fib.length - 2]);
+    return prev_fib;
+}
+
+// console.log(fibonacci(5));
+
+function deepDup(arr) {
+    if (Array.isArray(arr) !== true) {
+        return arr;
+    }
+
+    const dd = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        let ele = arr[i];
+        
+        dd.push(deepDup(ele));
+
+    }
+
+    return dd;
+}
+array = [0,[1,3],[2,[3]]];
+duped = deepDup(array);
+duped[1].push(4);
+console.log(array);
+console.log(duped);
